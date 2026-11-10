@@ -10,4 +10,7 @@ Audit: 2026-11-10.
 - Citation copying succeeds; keyboard Tab reaches the download link with a visible focus outline. Native expandable results open correctly. Static figures have original PDF/vector links and descriptive alternatives.
 - Reduced-motion CSS and dark-mode styles reviewed in source; no synthetic scientific animation is included. Dark-mode rendering was not separately emulated.
 - Main paper, arXiv, code, pinned notebooks and author profiles return HTTP 200. Three JHU institutional homepages return HTTP 403 to automated fetches; retained as official canonical institutional links rather than reported as broken. Detailed responses are in link-checks.json.
-- Deployment and live-site checks are recorded after publication.
+- GitHub Pages workflow [42739180653](https://github.com/SOLARIS-JHU/FE-DPC-website/actions/runs/42739180653) completed successfully (build and deploy) for commit af0c6be81b77e0b484d35c18d0568a351b13c4a9.
+- Published URL https://solaris-jhu.github.io/FE-DPC-website/ opened in Chrome and verified at desktop and mobile sizes. All 10 images loaded; 17 math expressions rendered with no error elements or browser warnings/errors. Citation copying and expandable results work on the live page.
+- All 56 deployed page/asset files returned HTTP 200 and matched local bytes exactly; see live-checks.json.
+- Screenshots: published-desktop.jpg and published-mobile.jpg. No deployment blocker remains.

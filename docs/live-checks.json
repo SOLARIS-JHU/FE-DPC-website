@@ -1,0 +1,282 @@
+[
+  {
+    "path": "index.html",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "style.css",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "template.css",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "site.js",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "citation.bib",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/glycolytic-control.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/glycolytic-control.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/glycolytic-model.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/glycolytic-model.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/graphical-abstract.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/graphical-abstract.png",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/graphical-abstract.svg",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/graphical-abstract.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/quadrotor.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/quadrotor.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/two-tank.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/two-tank.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/van-der-pol.pdf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/figures/van-der-pol.webp",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/font-0.ttf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/font-1.ttf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/font-2.ttf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/font-3.ttf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/font-4.ttf",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/fonts.css",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/Fraunces-OFL.txt",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/fonts/Inter-OFL.txt",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/logos/jhu-whiting.svg",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/logos/rosei.png",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/logos/solaris.png",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/logos/ut-austin.svg",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/social-preview.png",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/auto-render.min.js",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_AMS-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Caligraphic-Bold.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Caligraphic-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Fraktur-Bold.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Fraktur-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Main-Bold.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Main-BoldItalic.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Main-Italic.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Main-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Math-BoldItalic.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Math-Italic.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_SansSerif-Bold.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_SansSerif-Italic.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_SansSerif-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Script-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Size1-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Size2-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Size3-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Size4-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/fonts/KaTeX_Typewriter-Regular.woff2",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/katex.min.css",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/katex.min.js",
+    "status": 200,
+    "identical": true
+  },
+  {
+    "path": "assets/vendor/katex/LICENSE",
+    "status": 200,
+    "identical": true
+  }
+]
