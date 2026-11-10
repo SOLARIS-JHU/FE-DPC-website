@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "Please cite the research paper, using citation.bib or the preferred citation below."
+title: "FE-DPC research project website"
+type: software
+license: Apache-2.0
+url: "https://solaris-jhu.github.io/FE-DPC-website/"
+repository-code: "https://github.com/SOLARIS-JHU/FE-DPC-website"
+authors:
+  - family-names: "Drgoňa"
+    given-names: "Ján"
+preferred-citation:
+  type: conference-paper
+  title: "Zero-Shot Function Encoder-Based Differentiable Predictive Control"
+  authors:
+    - family-names: "Iqbal"
+      given-names: "Hassan"
+    - family-names: "Li"
+      given-names: "Xingjian"
+    - family-names: "Ingebrand"
+      given-names: "Tyler"
+    - family-names: "Thorpe"
+      given-names: "Adam"
+    - family-names: "Kumar"
+      given-names: "Krishna"
+    - family-names: "Topcu"
+      given-names: "Ufuk"
+    - family-names: "Drgoňa"
+      given-names: "Ján"
+  collection-title: "Proceedings of The 8th Annual Learning for Dynamics and Control Conference"
+  year: 2026
+  volume: 331
+  start: 299
+  end: 315
+  publisher:
+    name: "PMLR"
+  url: "https://proceedings.mlr.press/v331/iqbal26a.html"

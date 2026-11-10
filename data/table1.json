@@ -1,0 +1,17 @@
+{
+  "source": "arXiv:2511.05757v3, Section 4, Table 1; checked against PMLR 331:299-315",
+  "setting": "Fixed system parameters; not the switching demonstrations",
+  "metric": "Reported mean squared state-to-reference error",
+  "time_unit": "s",
+  "reported_hardware": "NVIDIA RTX 5090; CPU not specified",
+  "timing_batch_size": null,
+  "timing_aggregation": null,
+  "repeat_count": null,
+  "uncertainty": null,
+  "rows": [
+    {"benchmark": "Van der Pol", "fe_mse": "0.002683", "wb_mse": "0.002653", "fe_time": "0.53", "wb_time": "1.21"},
+    {"benchmark": "Two-tank", "fe_mse": "0.008452", "wb_mse": "0.004164", "fe_time": "1.13", "wb_time": "6.75"},
+    {"benchmark": "Glycolytic oscillator", "fe_mse": "0.180299", "wb_mse": "0.032320", "fe_time": "5.89", "wb_time": "136.07"},
+    {"benchmark": "Quadrotor", "fe_mse": "0.022003", "wb_mse": "0.024208", "fe_time": "1.93", "wb_time": "155.85"}
+  ]
+}

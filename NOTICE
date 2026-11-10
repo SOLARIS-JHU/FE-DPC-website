@@ -1,0 +1,18 @@
+FE-DPC research project website
+Copyright 2026 SOLARIS, Johns Hopkins University
+
+The visual foundation and template.css are adapted from the SOLARIS-JHU
+TQPNet project website (https://github.com/SOLARIS-JHU/TQPNet), distributed
+under the Apache License, Version 2.0. The original license is retained.
+FE-DPC-specific content, layouts, accessibility enhancements, asset handling,
+validation, and deployment are modifications for this website.
+
+Scientific figures: Iqbal et al., Zero-Shot Function Encoder-Based
+Differentiable Predictive Control, arXiv:2511.05757v3 / PMLR 331:299-315,
+2026. CC BY 4.0. Rendering conversions do not alter the reported data.
+
+KaTeX: MIT License, included with its assets.
+Fraunces and Inter: SIL Open Font License 1.1, included with the fonts.
+Institutional logos remain the property of their respective owners.
+
+See docs/ASSET_PROVENANCE.md for detailed sources and transformations.

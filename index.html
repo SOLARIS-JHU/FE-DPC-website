@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#002d72">
+  <title>Zero-Shot Function Encoder-Based Differentiable Predictive Control | SOLARIS</title>
+  <meta name="description" content="FE-DPC combines function-encoder neural ODEs and differentiable predictive control. Learn dynamics bases and a control policy offline; adapt online by estimating coefficients from observations. L4DC 2026.">
+  <link rel="canonical" href="https://solaris-jhu.github.io/FE-DPC-website/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zero-Shot Function Encoder-Based Differentiable Predictive Control">
+  <meta property="og:description" content="Learn a dynamics representation and a control policy offline. Adapt to changing systems through online coefficient inference. L4DC 2026 · SOLARIS.">
+  <meta property="og:url" content="https://solaris-jhu.github.io/FE-DPC-website/">
+  <meta property="og:image" content="https://solaris-jhu.github.io/FE-DPC-website/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="FE-DPC: offline dynamics and policy learning, online coefficient adaptation. Original method diagram.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zero-Shot Function Encoder-Based Differentiable Predictive Control">
+  <meta name="twitter:description" content="Function-encoder dynamics meet differentiable predictive control. L4DC 2026.">
+  <meta name="twitter:image" content="https://solaris-jhu.github.io/FE-DPC-website/assets/social-preview.png">
+  <meta name="citation_title" content="Zero-Shot Function Encoder-Based Differentiable Predictive Control">
+  <meta name="citation_author" content="Hassan Iqbal">
+  <meta name="citation_author" content="Xingjian Li">
+  <meta name="citation_author" content="Tyler Ingebrand">
+  <meta name="citation_author" content="Adam Thorpe">
+  <meta name="citation_author" content="Krishna Kumar">
+  <meta name="citation_author" content="Ufuk Topcu">
+  <meta name="citation_author" content="Ján Drgoňa">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="Proceedings of The 8th Annual Learning for Dynamics and Control Conference">
+  <meta name="citation_volume" content="331">
+  <meta name="citation_firstpage" content="299">
+  <meta name="citation_lastpage" content="315">
+  <meta name="citation_pdf_url" content="https://raw.githubusercontent.com/mlresearch/v331/main/assets/iqbal26a/iqbal26a.pdf">
+  <meta name="citation_arxiv_id" content="2511.05757">
+  <link rel="icon" href="assets/logos/solaris.png">
+  <link rel="stylesheet" href="assets/fonts/fonts.css">
+  <link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="template.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="assets/vendor/katex/katex.min.js"></script>
+  <script defer src="assets/vendor/katex/auto-render.min.js"></script>
+  <script defer src="site.js"></script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ScholarlyArticle","name":"Zero-Shot Function Encoder-Based Differentiable Predictive Control","author":[{"@type":"Person","name":"Hassan Iqbal"},{"@type":"Person","name":"Xingjian Li"},{"@type":"Person","name":"Tyler Ingebrand"},{"@type":"Person","name":"Adam Thorpe"},{"@type":"Person","name":"Krishna Kumar"},{"@type":"Person","name":"Ufuk Topcu"},{"@type":"Person","name":"Ján Drgoňa"}],"datePublished":"2026","isPartOf":{"@type":"PublicationVolume","name":"Proceedings of Machine Learning Research","volumeNumber":"331"},"pagination":"299–315","url":"https://proceedings.mlr.press/v331/iqbal26a.html","sameAs":"https://arxiv.org/abs/2511.05757","image":"https://solaris-jhu.github.io/FE-DPC-website/assets/social-preview.png"}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main">
+  <section class="hero" aria-labelledby="paper-title">
+    <div class="wrap">
+      <header class="hero-head">
+        <p class="eyebrow"><a class="pill" href="https://proceedings.mlr.press/v331/iqbal26a.html">L4DC 2026</a> Learning for Dynamics and Control · Oral</p>
+        <h1 id="paper-title">Zero-Shot Function Encoder-Based<br class="desktop-break"> Differentiable Predictive Control</h1>
+        <div class="authors" aria-label="Authors in publication order">
+          <span class="author"><a href="https://oden.utexas.edu/people/directory/Hassan-Iqbal/">Hassan Iqbal</a><sup>1</sup></span>
+          <span class="author"><a href="https://oden.utexas.edu/people/directory/Xingjian-Li/">Xingjian Li</a><sup>1</sup></span>
+          <span class="author"><a href="https://tyler-ingebrand.github.io/">Tyler Ingebrand</a><sup>1</sup></span>
+          <span class="author"><a href="https://ajthor.github.io/">Adam Thorpe</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.geoelements.org/team/krishna-kumar">Krishna Kumar</a><sup>1</sup></span>
+          <span class="author"><a href="https://ae.utexas.edu/person/ufuk-topcu/">Ufuk Topcu</a><sup>1</sup></span>
+          <span class="author"><a href="https://www.linkedin.com/in/drgona/">Ján Drgoňa</a><sup>2</sup></span>
+        </div>
+        <p class="affiliations"><sup>1</sup><a href="https://www.utexas.edu/">The University of Texas at Austin</a> &nbsp; <sup>2</sup><a href="https://www.jhu.edu/">Johns Hopkins University</a></p>
+      </header>
+      <div class="opening">
+        <p class="summary">A controller trained for one system can struggle when its dynamics change. <strong>FE-DPC learns a space of dynamics and a policy conditioned on that space.</strong> At deployment, observations identify a compact coefficient vector, which adapts the control action without retraining the neural networks or solving an online model predictive control problem.</p>
+        <div class="buttons" aria-label="Paper resources">
+          <a class="btn btn-primary" href="https://proceedings.mlr.press/v331/iqbal26a.html">Paper</a>
+          <a class="btn" href="https://arxiv.org/abs/2511.05757">arXiv</a>
+          <a class="btn" href="https://github.com/hassaniqbal209/DPCFunctionEncoder">Code</a>
+          <a class="btn" href="#citation">BibTeX</a>
+        </div>
+      </div>
+      <figure class="figure overview-figure" id="graphical-abstract">
+        <a href="assets/figures/graphical-abstract.svg" class="figure-link" aria-label="Open the graphical abstract at full resolution">
+          <img src="assets/figures/graphical-abstract.svg" width="2600" height="957" fetchpriority="high" alt="Original FE-DPC method diagram. Offline: trajectory data train function-encoder neural ODE bases using a time-stepper and system-identification loss. A coefficient-conditioned policy is then trained through the pretrained FE-NODE using reference-tracking and constraint penalties, with gradients returning to the policy. Online: new trajectories update the function-encoder coefficients, which condition the frozen policy together with the state and control parameters.">
+        </a>
+        <figcaption><strong>Learn offline, adapt online.</strong> The original graphical abstract shows all three stages: dynamics learning, policy learning, and coefficient-based adaptation. <a href="assets/figures/graphical-abstract.pdf">Original PDF</a> · <a href="assets/figures/graphical-abstract.svg">Full-resolution figure</a><span class="mobile-figure-hint">Swipe horizontally to inspect the figure.</span></figcaption>
+      </figure>
+      <div class="logos" aria-label="Institutions and research group">
+        <a href="https://www.utexas.edu/"><img src="assets/logos/ut-austin.svg" width="227" height="65" alt="The University of Texas at Austin"></a>
+        <a href="https://engineering.jhu.edu/"><img src="assets/logos/jhu-whiting.svg" width="240" height="64" alt="Johns Hopkins Whiting School of Engineering"></a>
+        <a href="https://solaris-jhu.github.io/solaris-website/"><img class="square" src="assets/logos/solaris.png" width="240" height="199" alt="SOLARIS Lab"></a>
+        <a href="https://energyinstitute.jhu.edu/"><img src="assets/logos/rosei.png" width="956" height="238" alt="Ralph O’Connor Sustainable Energy Institute"></a>
+      </div>
+    </div>
+  </section>
+  <nav class="section-nav" aria-label="On this page"><div class="wrap"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#scope">Scope</a><a href="#resources">Resources</a><a href="#citation">Citation</a></div></nav>
+
+  <section id="overview" aria-labelledby="overview-title">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Problem and contribution</p>
+      <h2 id="overview-title">Control across a family of unknown dynamics</h2>
+      <div class="prose">
+        <p><strong>Research summary.</strong> The goal is to learn a feedback policy for nonlinear systems whose dynamics parameters may be unknown or change during operation. The policy must account for the current state, the task, and the system being controlled.</p>
+        <div class="math" tabindex="0" role="region" aria-label="Mathematical formulation; scroll horizontally if needed">$$\dot{\mathbf{x}}=\mathbf{f}(\mathbf{x},\mathbf{u};\boldsymbol{\nu}),\qquad \mathbf{u}=\pi(\mathbf{x};\boldsymbol{\xi},\boldsymbol{\nu}),\qquad h(\mathbf{x};\boldsymbol{\xi})\leq0,\quad g(\mathbf{u};\boldsymbol{\xi})\leq0.$$</div>
+        <p>Here, \(\boldsymbol{\nu}\) specifies the dynamics and \(\boldsymbol{\xi}\) specifies objectives and constraints. Classical model predictive control (MPC) repeatedly solves a finite-horizon optimization problem. Differentiable predictive control (DPC) instead trains an explicit policy offline by differentiating through model rollouts. FE-DPC supplies the adaptable learned model that this training requires.</p>
+      </div>
+      <div class="pillars">
+        <article class="card"><span class="num" aria-hidden="true">1</span><h3>A learned dynamics space</h3><p>Function-encoder neural ordinary differential equations (FE-NODEs) represent different systems using shared neural basis functions and system-specific coefficients.</p></article>
+        <article class="card"><span class="num" aria-hidden="true">2</span><h3>A policy that uses the representation</h3><p>The coefficient vector conditions a self-supervised DPC policy, connecting system identification directly to feedback control.</p></article>
+        <article class="card"><span class="num" aria-hidden="true">3</span><h3>Adaptation tested in simulation</h3><p>Four nonlinear benchmarks examine prediction, control, and responses to parameter switches. The authors release training code, evaluation notebooks, and checkpoints.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="method" aria-labelledby="method-title">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">The method</p>
+      <h2 id="method-title">Two offline learning stages. One online update.</h2>
+      <article class="method-step">
+        <div class="step-label"><span>01</span><span>Offline · learn the dynamics</span></div>
+        <h3>Fit shared neural ODE basis functions</h3>
+        <p>Collect state–input–next-state transitions from a family of systems. Infer each system’s coefficients and optimize the neural bases by minimizing prediction error through the numerical time-stepper.</p>
+        <div class="math" tabindex="0" role="region" aria-label="Mathematical formulation; scroll horizontally if needed">$$\widehat{\mathbf f}(\mathbf{x},\mathbf u;\mathbf c)=\sum_{j=1}^{B}c_j\mathbf g_j(\mathbf{x},\mathbf u;\boldsymbol\theta_j),\qquad \widehat{\mathbf x}_{k+1}=\mathbf x_k+\int_{t_k}^{t_{k+1}}\widehat{\mathbf f}(\mathbf{x}(t),\mathbf u_k;\mathbf c)\,\mathrm dt.$$</div>
+        <p class="detail">The bases \(\mathbf g_j\) are shared across the family; the vector \(\mathbf c\) selects an approximation to a particular system’s dynamics. The paper uses fourth-order Runge–Kutta integration.</p>
+      </article>
+      <article class="method-step">
+        <div class="step-label"><span>02</span><span>Offline · learn the policy</span></div>
+        <h3>Backpropagate through closed-loop trajectories</h3>
+        <p>Use the pretrained FE-NODE as a differentiable simulator. Sample initial states, task parameters, and inferred coefficients; roll out the feedback policy; then update its weights \(\mathbf W\) using the control objective.</p>
+        <div class="math" tabindex="0" role="region" aria-label="Mathematical formulation; scroll horizontally if needed">$$\mathbf u_k=\pi_{\mathbf W}(\mathbf x_k;\boldsymbol\xi,\mathbf c),\qquad \min_{\mathbf W}\;\mathbb E_{\mathbf x_0,\boldsymbol\xi,\mathbf c}\!\left[\sum_{k=0}^{N-1}\!\left(\ell(\mathbf x_k,\mathbf u_k,\boldsymbol\xi)+p(h(\mathbf x_k,\boldsymbol\xi))+p(g(\mathbf u_k,\boldsymbol\xi))\right)+p_N(\mathbf x_N)\right].$$</div>
+        <p class="detail">Gradients pass through the rollout to the policy. Training uses task losses rather than optimal-control labels. In this formulation, constraints enter as <strong>soft penalties</strong>; minimizing them does not by itself certify feasibility.</p>
+      </article>
+      <article class="method-step online-step">
+        <div class="step-label"><span>03</span><span>Online · infer and control</span></div>
+        <h3>Update coefficients, keep network weights fixed</h3>
+        <p>From observed transitions, form an empirical Gram matrix \(\mathbf G\) and projection vector \(\mathbf F\). Solve the regularized least-squares system, then evaluate the policy with the updated coefficients and the current state.</p>
+        <div class="math" tabindex="0" role="region" aria-label="Mathematical formulation; scroll horizontally if needed">$$(\mathbf G+\lambda\mathbf I)\mathbf c=\mathbf F,\qquad \mathbf u_k=\pi_{\mathbf W}(\mathbf x_k;\boldsymbol\xi,\mathbf c).$$</div>
+        <p class="detail"><strong>“Zero-shot” means no neural-network retraining.</strong> Online adaptation still needs observations and a coefficient solve. It avoids solving the full MPC problem online.</p>
+        <details><summary>How transitions determine the coefficients</summary>
+          <p>Algorithm 3 uses \(m\) samples and a finite-difference approximation to the state derivative:</p>
+          <div class="math" tabindex="0" role="region" aria-label="Mathematical formulation; scroll horizontally if needed">$$G_{ij}=\frac{1}{m}\sum_{l=1}^{m}\left\langle\mathbf g_i(\mathbf x_k^l,\mathbf u_k^l),\mathbf g_j(\mathbf x_k^l,\mathbf u_k^l)\right\rangle,\qquad F_i=\frac{1}{m}\sum_{l=1}^{m}\left\langle\frac{\mathbf x_{k+1}^l-\mathbf x_k^l}{\Delta t},\mathbf g_i(\mathbf x_k^l,\mathbf u_k^l)\right\rangle.$$</div>
+          <p>The paper uses \(m=100\) data points to infer coefficients in each benchmark. Tikhonov regularization \(\lambda>0\) stabilizes the coefficient calculation. Both the basis and policy weights stay fixed during online evaluation.</p>
+        </details>
+      </article>
+      <p class="source-note">Method: paper §2–3, Eqs. (1)–(3), Algorithms 1–3. The experiments use 11, 11, 21, and 32 basis functions for Van der Pol, two-tank, glycolytic oscillator, and quadrotor, respectively (§4 and Appendix A.2).</p>
+    </div>
+  </section>
+
+  <section id="results" aria-labelledby="results-title">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Numerical experiments</p>
+      <h2 id="results-title">Adaptation under changing dynamics</h2>
+      <p class="prose">All results below are simulations reported in the paper. Figures are reproduced from the original vector assets, with their axes and legends intact. They show observed benchmark behavior, not a general stability or safety guarantee.</p>
+
+      <h3 id="vdp-results">Van der Pol: stabilizing after a dynamics switch</h3>
+      <p>The controller regulates a nonlinear oscillator with unknown \(\mu\) and a direction parameter \(d\in\{-1,1\}\). The example compares uncontrolled predictions and controlled trajectories, first for fixed dynamics and then for a switch after 25 simulation steps.</p>
+      <figure class="figure">
+        <a class="figure-link" href="assets/figures/van-der-pol.pdf" aria-label="Open the original Van der Pol results PDF"><img src="assets/figures/van-der-pol.webp" width="2401" height="672" loading="lazy" alt="Four original Van der Pol panels: uncontrolled fixed dynamics, controlled fixed dynamics, uncontrolled switching dynamics, and controlled switching dynamics. Legends distinguish true and predicted states, control input, reference, and system switches."></a>
+        <figcaption><strong>Figure 3.</strong> Fixed dynamics (left two panels) and switching dynamics (right two panels). The displayed controlled trajectories return toward the origin. <a href="assets/figures/van-der-pol.pdf">View original PDF</a>.</figcaption>
+      </figure>
+
+      <h3 id="tank-results">Two-tank: tracking as the system and reference change</h3>
+      <p>A pump and valve regulate two liquid levels. The reported 700-step rollout changes both the system parameters and the reference. FE-DPC adjusts through coefficient inference while retaining the same policy weights.</p>
+      <figure class="figure">
+        <a class="figure-link" href="assets/figures/two-tank.pdf" aria-label="Open the original two-tank results PDF"><img src="assets/figures/two-tank.webp" width="2200" height="740" loading="lazy" alt="Original two-tank plot showing tank states and references over time, with vertical markers for system switches and a second panel showing pump and valve inputs with bounds."></a>
+        <figcaption><strong>Figure 4.</strong> Reference tracking through multiple system switches. Tank levels (top) and bounded pump/valve inputs (bottom) are shown as reported. <a href="assets/figures/two-tank.pdf">View original PDF</a>.</figcaption>
+      </figure>
+
+      <h3 id="go-results">Glycolytic oscillator: a stiff, seven-state system</h3>
+      <p>This biochemical model couples seven species. Only the first state is directly actuated and tracked. The control comparison uses a prediction horizon of 50 for FE-DPC and white-box MPC (WB-MPC), which has access to the true dynamics.</p>
+      <figure class="figure">
+        <a class="figure-link" href="assets/figures/glycolytic-control.pdf" aria-label="Open the original glycolytic control comparison PDF"><img src="assets/figures/glycolytic-control.webp" width="2200" height="734" loading="lazy" alt="Original glycolytic oscillator comparison: FE-DPC on the left and white-box MPC on the right, showing first-state tracking error above the control input and its bounds."></a>
+        <figcaption><strong>Figure 6.</strong> FE-DPC (left) and WB-MPC (right). Both exhibit a reference offset when the input saturates; WB-MPC has lower reported tracking MSE on this benchmark. <a href="assets/figures/glycolytic-control.pdf">View original PDF</a>.</figcaption>
+      </figure>
+      <details class="result-detail"><summary>Inspect the learned dynamics under parameter switches</summary>
+        <figure class="figure">
+          <a class="figure-link" href="assets/figures/glycolytic-model.pdf" aria-label="Open the original glycolytic dynamics prediction PDF"><img src="assets/figures/glycolytic-model.webp" width="2200" height="745" loading="lazy" alt="Original glycolytic dynamics plot showing true and predicted state trajectories and prediction errors during repeated parameter switches."></a>
+          <figcaption><strong>Figure 5.</strong> Uncontrolled dynamics: system parameters change every 500 steps, and predictions are reset to the true states every 50 steps. This is not an uninterrupted long-horizon prediction. <a href="assets/figures/glycolytic-model.pdf">View original PDF</a>.</figcaption>
+        </figure>
+      </details>
+
+      <h3 id="quadrotor-results">Quadrotor: hover across 20 parameterizations</h3>
+      <p>A 12-state nonlinear model varies mass and moments of inertia. The reported test uses 20 parameterizations, each with random initialization and an abrupt dynamics switch between 2 and 20 seconds. The altitude target is 0.4 m.</p>
+      <figure class="figure">
+        <a class="figure-link" href="assets/figures/quadrotor.pdf" aria-label="Open the original quadrotor results PDF"><img src="assets/figures/quadrotor.webp" width="2400" height="924" loading="lazy" alt="Original quadrotor simulation: altitude in metres, roll and pitch in radians above the three policy commands. Colored traces show 20 models, the purple region marks switching times, dashed lines mark references and command bounds; altitude approaches 0.4 metres."></a>
+        <figcaption><strong>Figure 7.</strong> The paper reports successful stabilization of all 20 simulated models within its terminal-cost tolerance. The three policy outputs feed the thrust and roll/pitch feedback laws defined in Appendix A.1; yaw torque is set to zero. <a href="assets/figures/quadrotor.pdf">View original PDF</a>.</figcaption>
+      </figure>
+
+      <h3 id="comparison">Reported accuracy and computation time</h3>
+      <p>The quantitative comparison uses <strong>fixed system parameters</strong>, separate from the switching demonstrations above. WB-MPC uses the true dynamics through CasADi; FE-DPC uses learned dynamics and a learned policy.</p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Table 1 benchmark results; scroll horizontally on small screens">
+        <table class="results" id="benchmark-table">
+          <caption>Table 1 · Values reported in arXiv v3 and the PMLR paper</caption>
+          <thead><tr><th scope="col">Benchmark</th><th scope="col">FE-DPC MSE</th><th scope="col">WB-MPC MSE</th><th scope="col">FE-DPC time (s)</th><th scope="col">WB-MPC time (s)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Van der Pol</th><td>0.002683</td><td>0.002653</td><td>0.53</td><td>1.21</td></tr>
+            <tr><th scope="row">Two-tank</th><td>0.008452</td><td>0.004164</td><td>1.13</td><td>6.75</td></tr>
+            <tr><th scope="row">Glycolytic oscillator</th><td>0.180299</td><td>0.032320</td><td>5.89</td><td>136.07</td></tr>
+            <tr><th scope="row">Quadrotor</th><td>0.022003</td><td>0.024208</td><td>1.93</td><td>155.85</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-note">MSE is the paper’s mean squared state-to-reference error; values should be compared within each benchmark. §4 reports a single NVIDIA RTX 5090 GPU for the experiments. Table 1 does not specify timing batch size, timing aggregation, CPU configuration, or repeated-run uncertainty, so these times are not presented as per-step latency.</p>
+      <details class="source-detail"><summary>Reading the comparison carefully</summary><p>The listed FE-DPC times are lower for all four benchmarks. WB-MPC has lower MSE in the first three, while the quadrotor table entry favors FE-DPC. The paper’s prose says MPC has the lowest error across all examples and gives an upper speedup of 71.5×; its quadrotor table values instead imply approximately 80.75×. We retain the original measurements without promoting either conflicting summary as a headline result.</p></details>
+    </div>
+  </section>
+
+  <section class="alt" id="scope" aria-labelledby="scope-title">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Scope and interpretation</p>
+      <h2 id="scope-title">What the evidence supports</h2>
+      <div class="scope-grid">
+        <article><h3>Data and observability matter</h3><p>The approach assumes full-state information and historical trajectories that sufficiently represent the dynamics family. Adaptation relies on new transition observations and on the learned basis being useful for the encountered system.</p></article>
+        <article><h3>Approximate control, empirical validation</h3><p>The policy approximates the optimal-control solution. Soft constraint penalties and successful simulations do not establish universal feasibility or closed-loop stability. §3.1 discusses representation results from prior function-encoder work, rather than a new general control guarantee.</p></article>
+        <article><h3>Simulation and implementation scope</h3><p>The paper evaluates four numerical systems; it reports no hardware deployment. The inspected code release includes Van der Pol, two-tank, and glycolytic evaluation notebooks and checkpoints. A corresponding quadrotor experiment was not present in that release.</p></article>
+        <article><h3>Version-specific details</h3><p>This page follows arXiv v3 (15 April 2026), with publication details checked against PMLR. Glycolytic parameter ranges differ between §4, Appendix A.2, and the released data generator, so no unified range is asserted here.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="resources" aria-labelledby="resources-title">
+    <div class="wrap wrap-narrow">
+      <p class="eyebrow">Explore the work</p>
+      <h2 id="resources-title">Paper, code, and evaluation notebooks</h2>
+      <div class="resource-grid">
+        <a class="resource-card" href="https://proceedings.mlr.press/v331/iqbal26a.html"><strong>Published paper <span aria-hidden="true">↗</span></strong><span>L4DC 2026 · PMLR 331:299–315</span></a>
+        <a class="resource-card" href="https://github.com/hassaniqbal209/DPCFunctionEncoder"><strong>Research code <span aria-hidden="true">↗</span></strong><span>Training, evaluation, and released checkpoints</span></a>
+        <a class="resource-card" href="https://github.com/hassaniqbal209/DPCFunctionEncoder/blob/001572e38136f70aed6ace621bc07f67335ef14f/src/evaluate_VDP.ipynb"><strong>Van der Pol notebook <span aria-hidden="true">↗</span></strong><span>Inspect the released evaluation</span></a>
+        <a class="resource-card" href="https://github.com/hassaniqbal209/DPCFunctionEncoder/blob/001572e38136f70aed6ace621bc07f67335ef14f/src/evaluate_TT.ipynb"><strong>Two-tank notebook <span aria-hidden="true">↗</span></strong><span>Inspect the released evaluation</span></a>
+        <a class="resource-card" href="https://github.com/hassaniqbal209/DPCFunctionEncoder/blob/001572e38136f70aed6ace621bc07f67335ef14f/src/evaluate_GO.ipynb"><strong>Glycolytic notebook <span aria-hidden="true">↗</span></strong><span>Inspect the released evaluation</span></a>
+        <a class="resource-card" href="assets/figures/graphical-abstract.pdf"><strong>Graphical abstract <span aria-hidden="true">↗</span></strong><span>Original author-supplied vector PDF</span></a>
+      </div>
+      <p class="links">The code uses <a href="https://github.com/ajthor/function-encoder">Function Encoder</a> and <a href="https://github.com/pnnl/neuromancer">NeuroMANCER</a>. Notebook links pin the inspected code revision; the main Code button leads to the current repository.</p>
+    </div>
+  </section>
+
+  <section class="alt" id="citation" aria-labelledby="citation-title">
+    <div class="wrap wrap-narrow">
+      <h2 id="citation-title">Citation</h2>
+      <p>Published in the Proceedings of the 8th Annual Learning for Dynamics and Control Conference, PMLR 331, pages 299–315, 2026.</p>
+      <div class="citation-actions"><button class="btn" id="copy-bibtex" type="button">Copy BibTeX</button><a href="citation.bib" class="btn" download>Download .bib</a><span id="copy-status" role="status" aria-live="polite"></span></div>
+      <pre tabindex="0" aria-label="BibTeX citation"><code id="bibtex">@InProceedings{pmlr-v331-iqbal26a,
+  title = {Zero-Shot Function Encoder-Based Differentiable Predictive Control},
+  author = {Iqbal, Hassan and Li, Xingjian and Ingebrand, Tyler and
+            Thorpe, Adam and Kumar, Krishna and Topcu, Ufuk and Drgona, Jan},
+  booktitle = {Proceedings of The 8th Annual Learning for Dynamics and Control Conference},
+  pages = {299--315},
+  year = {2026},
+  editor = {Sukhatme, Gaurav and Lindemann, Lars and Tu, Stephen and
+            Wierman, Adam and Atanasov, Nikolay},
+  volume = {331},
+  series = {Proceedings of Machine Learning Research},
+  month = {17--19 Jun},
+  publisher = {PMLR},
+  url = {https://proceedings.mlr.press/v331/iqbal26a.html}
+}</code></pre>
+      <p class="links">BibTeX follows the publisher’s record, including its ASCII rendering of author names. Scientific content: <a href="https://arxiv.org/abs/2511.05757v3">arXiv v3</a>. Affiliations above are those listed in the paper.</p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><p><a href="https://solaris-jhu.github.io/solaris-website/">SOLARIS Lab</a> · Johns Hopkins University<br>Page design adapted from <a href="https://solaris-jhu.github.io/TQPNet/">TQPNet</a> under Apache-2.0. Paper figures: Iqbal et al., <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. <a href="https://github.com/SOLARIS-JHU/FE-DPC-website">Website source</a>.</p></div></footer>
+</body>
+</html>
